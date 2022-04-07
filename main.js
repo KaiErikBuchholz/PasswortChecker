@@ -5,11 +5,11 @@ let laenge = false
 let grossbuchstaben = false
 let kleinbuchstaben = false
 let zahlen = false
-let sonderzeichen = false
+
 
 function berechnen(){
-    pw = document.getElementById("eingabe");
-    pwArray = pw.spilt("")
+    pw = document.getElementById("eingabe").value;
+    pwArray = pw.split("")
     console.log(pw)
     console.log(pwArray)
 
@@ -17,7 +17,16 @@ function berechnen(){
     grossbuchstabenEnthalten()
     kleinbuchstabenEnthalten()
     zahlenEnthalten()
-    sonderzeichenEnthalten()
+
+
+    if(laenge && grossbuchstaben && kleinbuchstaben && zahlen){
+        document.getElementById("Anmerkung").style.color = "green"
+        document.getElementById("Anmerkung").innerHTML = "Das Passwort ist sicher!"
+
+    }else{
+        document.getElementById("Anmerkung").style.color = "red"
+        document.getElementById("Anmerkung").innerHTML = "Das Passwort ist unsicher!"
+    }
 
 
 }
@@ -31,5 +40,17 @@ function laengePruefen(){
 function grossbuchstabenEnthalten(){
     if(/[A-Z]/.test(pw)){
         grossbuchstaben = true
+    }
+            }
+
+function kleinbuchstabenEnthalten(){
+    if(/[a-z]/.test(pw)){
+        kleinbuchstaben = true
+    }
+}
+
+function zahlenEnthalten(){
+    if(/[0-1]/.test(pw)){
+        zahlen = true
     }
 }
